@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class ProdutoService {
+
     @Autowired
     private ProdutoRepository repository;
 
@@ -19,8 +20,8 @@ public class ProdutoService {
         return repository.save(produto);
     }
 
-     public List<Produto> listarTodos() {
-  
+    public List<Produto> listarTodos() {
+
         return repository.findAll();
     }
 
@@ -28,5 +29,19 @@ public class ProdutoService {
 
         return repository.findById(id).get();
     }
-    
+
+    @Transactional
+    public void update(Long id, Produto produtoAlterado) {
+
+        Produto produto = repository.findById(id).get();
+        produto.setCodigo(produtoAlterado.getCodigo());
+        produto.setTitulo(produtoAlterado.getTitulo());
+        produto.setDescricao(produtoAlterado.getDescricao());
+        produto.setValorUnitario(produtoAlterado.getValorUnitario());
+        produto.setTempoEntregaMinima(produtoAlterado.getTempoEntregaMinima());
+        produto.setTempoEntregaMaxima(produtoAlterado.getTempoEntregaMaxima());
+
+        repository.save(produto);
+    }
+
 }
