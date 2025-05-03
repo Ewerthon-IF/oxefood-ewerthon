@@ -19,8 +19,8 @@ public class EntregadorService {
         return repository.save(entregador);
     }
 
-     public List<Entregador> listarTodos() {
-  
+    public List<Entregador> listarTodos() {
+
         return repository.findAll();
     }
 
@@ -50,7 +50,16 @@ public class EntregadorService {
         entregador.setEnderecoUf(entregadorAlterado.getEnderecoUf());
         entregador.setAtivo(entregadorAlterado.getAtivo());
 
+        repository.save(entregador);
+    }
+
+    @Transactional
+    public void delete(Long id) {
+
+        Entregador entregador = repository.findById(id).get();
+        entregador.setHabilitado(Boolean.FALSE);
 
         repository.save(entregador);
     }
+
 }
