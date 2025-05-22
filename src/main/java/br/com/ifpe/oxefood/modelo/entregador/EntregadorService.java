@@ -9,6 +9,7 @@ import jakarta.transaction.Transactional;
 
 @Service
 public class EntregadorService {
+    
     @Autowired
     private EntregadorRepository repository;
 

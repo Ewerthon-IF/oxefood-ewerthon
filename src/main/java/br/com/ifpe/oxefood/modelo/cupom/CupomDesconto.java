@@ -1,11 +1,11 @@
-package br.com.ifpe.oxefood.modelo.produto;
+package br.com.ifpe.oxefood.modelo.cupom;
+import java.time.LocalDate;
 
 import org.hibernate.annotations.SQLRestriction;
 
 import br.com.ifpe.oxefood.util.entity.EntidadeAuditavel;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -13,8 +13,9 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+
 @Entity
-@Table(name = "Produto")
+@Table(name = "CupomDesconto")
 @SQLRestriction("habilitado = true")
 
 @Builder
@@ -22,26 +23,27 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Produto extends EntidadeAuditavel {
-
-    @ManyToOne
-    private CategoriaProduto categoria;
+public class CupomDesconto extends EntidadeAuditavel {
 
     @Column
-    private String codigo;
+    private String codigoDesconto ;
 
     @Column
-    private String titulo;
+    private double percentualDesconto;
 
     @Column
-    private String descricao;
+    private double valorDesconto;
 
     @Column
-    private Double valorUnitario;
+    private double valorMinimoPedidoPermitido;
 
     @Column
-    private Integer tempoEntregaMinima;
+    private int quantidadeMaximaUso;
 
     @Column
-    private Integer tempoEntregaMaxima;
+    private LocalDate inicioVigencia; 
+
+    @Column
+    private LocalDate fimVigencia;
+
 }
